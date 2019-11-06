@@ -4,6 +4,8 @@ const express = require("express")
 const helmet = require("helmet")
 const morgan = require("morgan")
 const mongoose = require("mongoose")
+const Joi = require("joi")
+Joi.objectId = require("joi-objectid")(Joi)
 
 const genres = require("./routes/genres")
 const homepage = require("./routes/home")
