@@ -22,11 +22,15 @@ const userSchema = new mongoose.Schema({
         minlength: 8,
         maxlength: 1024,
         required: true
-    }
+    },
+    isAdmin: Boolean
 })
 
 userSchema.methods.generateAuthToken = function() { // Arrow function syntax doesn't work with "this" for self reference
-    return jwt.sign({ _id: this._id }, config.get("jwtPrivateKey")) // $env:vidly_jwtPrivateKey = "anything"
+    return jwt.sign({ 
+        _id: this._id,
+        isAdmin: this.isAdmin
+    }, config.get("jwtPrivateKey")) // $env:vidly_jwtPrivateKey = "anything"
 }
 
 const User = mongoose.model("User", userSchema)

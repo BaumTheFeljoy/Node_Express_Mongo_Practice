@@ -48,7 +48,7 @@ app.use("/api/auth", auth)
 
 // Configuration details
 if(!config.get("jwtPrivateKey")) {
-    console.error("FATAL ERROR: jwtPrivateKey is not defined")
+    console.error("FATAL ERROR: jwtPrivateKey is not defined") // Windows: $env:vidly_jwtPrivateKey = "anything"
     process.exit(1)
 } 
 console.log("Application name: " + config.get("name"))

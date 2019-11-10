@@ -5,6 +5,7 @@ const { Movie } = require("../models/movie")
 const Fawn = require("fawn")
 const mongoose = require("mongoose")
 const router = express.Router()
+const auth = require("../middleware/auth")
 
 Fawn.init(mongoose) // Maybe don't use, npm shows vulnerabilities
 
@@ -13,7 +14,7 @@ router.get("/", async (req, res) => {
     res.send(rentals)
 })
 
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
     const { error } = validate(req.body)
     if (error) return res.status(400).send(error.details[0].message)
 
