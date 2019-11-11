@@ -30,7 +30,7 @@ userSchema.methods.generateAuthToken = function() { // Arrow function syntax doe
     return jwt.sign({ 
         _id: this._id,
         isAdmin: this.isAdmin
-    }, config.get("jwtPrivateKey")) // $env:vidly_jwtPrivateKey = "anything"
+    }, config.get("jwtPrivateKey"))
 }
 
 const User = mongoose.model("User", userSchema)
@@ -41,7 +41,6 @@ function validateUser(user) {
         email: Joi.string().min(1).max(255).required().email(),
         password: Joi.string().max(255).min(8).required()
     }
-
     return Joi.validate(user, schema)
 }
 
