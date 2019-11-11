@@ -1,4 +1,6 @@
 const express = require("express")
+const morgan = require("morgan")
+
 const genres = require("../routes/genres")
 const homepage = require("../routes/home")
 const customers = require("../routes/customers")
